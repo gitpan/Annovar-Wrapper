@@ -13,7 +13,7 @@ bin/annovar-wrapper.pl
 cpanfile
 dist.ini
 ignore.txt
-lib/Annovar.pod
+lib/Annovar/Examples.pod
 lib/Annovar/Wrapper.pm
 t/00-load.t
 t/boilerplate.t
