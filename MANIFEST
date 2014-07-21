@@ -5,8 +5,6 @@ LICENSE
 MANIFEST
 META.json
 META.yml
-MYMETA.json
-MYMETA.yml
 Makefile
 README
 bin/annovar-wrapper.pl
@@ -16,7 +14,6 @@ ignore.txt
 lib/Annovar/Examples.pod
 lib/Annovar/Wrapper.pm
 t/00-load.t
-t/boilerplate.t
 t/manifest.t
 t/pod-coverage.t
 t/pod.t

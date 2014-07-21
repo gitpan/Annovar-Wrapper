@@ -1,5 +1,8 @@
 Revision history for Annovar-Wrapper
 
+0.05  2014-07-21 14:19:24 AST
+        - Changed name in Annovar/Example.pod to Annovar::Example
+    
 0.04  2014-07-16 15:55:50 AST
         - Still trying to get the documentation right
 

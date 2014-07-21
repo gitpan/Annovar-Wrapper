@@ -1,6 +1,6 @@
 =head1 Name
 
-Annovar::Wrapper - Documentation describing the use of the Annovar::Wrapper module
+Annovar::Example - Documentation describing the use of the Annovar::Wrapper module
 
 =cut
 
