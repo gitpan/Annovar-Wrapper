@@ -21,11 +21,11 @@ Annovar::Wrapper - A wrapper around the annovar annotation pipeline
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =cut
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 
 =head1 SYNOPSIS
@@ -201,41 +201,46 @@ http://www.openbioinformatics.org/annovar/annovar_download.html for hg19 that I 
     --annovar_dbs cg46 --annovar_dbs cg69 --annovar_dbs nci60
 
 =cut
+#TODO
+#Add in a hashref so I don't have to remember the list
+#The following are redundant within other databases
+#esp are in popfreq_all
+#esp6500si_aa 
+#esp6500si_ea
+#ljb23 are in ljb23_all
+#ljb23_fathmm
+#ljb23_gerp++
+#ljb23_lrt
+#ljb23_ma
+#ljb23_metalr
+#ljb23_metasvm
+#ljb23_mt
+#ljb23_phylop
+#ljb23_pp2hdiv
+#ljb23_pp2hvar
+#ljb23_sift
+#ljb23_siphy
+#ljb2_pp2hvar
+#Leaving out cg46
 
 has 'annovar_dbs' => (
     is => 'rw',
     isa => 'ArrayRef',
     required => 0,
     default => sub {
-        return [qw(caddgt20 
-cg46
-cg69
-clinvar_20140211
-cosmic68wgs
-esp6500si_aa
-esp6500si_ea
-gerp++elem
-ljb23_fathmm
-ljb23_gerp++
-ljb23_lrt
-ljb23_ma
-ljb23_metalr
-ljb23_metasvm
-ljb23_mt
-ljb23_phylop
-ljb23_pp2hdiv
-ljb23_pp2hvar
-ljb23_sift
-ljb23_siphy
-ljb2_pp2hvar
-nci60
-popfreq_all
-snp138NonFlagged
+        return [qw(snp138NonFlagged
 snp138
+popfreq_all
+cg69
+cosmic68wgs
+clinvar_20140211
 gwasCatalog
+caddgt20
 phastConsElements46way
+gerp++elem
 wgEncodeBroadHmmGm12878HMM
 wgEncodeUwDnaseGm12878HotspotsRep2
+ljb23_all
 refGene
 )]
     }
@@ -312,16 +317,22 @@ has 'annovar_cols' => (
     required => 0,
     default => sub {
         my $href = {};
-        $href->{popfreq_max} = ["PopFreqMax"];
-        $href->{popfreq_all} = ["PopFreqMax","1000G2012APR_ALL","1000G2012APR_AFR","1000G2012APR_AMR","1000G2012APR_ASN","1000G2012APR_EUR","ESP6500si_AA","ESP6500si_EA","CG46","NCI60","SNP137","COSMIC65","DISEASE"];
+        #Old table_annovar.pl script
+#        $href->{popfreq_max} = ["PopFreqMax"];
+#        $href->{popfreq_all} = ["PopFreqMax","1000G2012APR_ALL","1000G2012APR_AFR","1000G2012APR_AMR","1000G2012APR_ASN","1000G2012APR_EUR","ESP6500si_AA","ESP6500si_EA","CG46","NCI60","SNP137","COSMIC65","DISEASE"];
+#        $href->{refGene} = ["Func.refGene","Gene.refGene","ExonicFunc.refGene","AAChange.refGene"]; 
+#	    $href->{ljb_all} = [ qw/LJB_PhyloP LJB_PhyloP_Pred LJB_SIFT LJB_SIFT_Pred LJB_PolyPhen2 LJB_PolyPhen2_Pred LJB_LRT LJB_LRT_Pred LJB_MutationTaster LJB_MutationTaster_Pred LJB_GERP++/ ];
+#	    $href->{ljb2_all} = [ qw/LJB2_SIFT LJB2_PolyPhen2_HDIV LJB2_PP2_HDIV_Pred LJB2_PolyPhen2_HVAR LJB2_PolyPhen2_HVAR_Pred LJB2_LRT LJB2_LRT_Pred LJB2_MutationTaster LJB2_MutationTaster_Pred LJB_MutationAssessor LJB_MutationAssessor_Pred LJB2_FATHMM LJB2_GERP++ LJB2_PhyloP LJB2_SiPhy/ ];
+#	$href->{ljb23_all} = [ qw/LJB23_SIFT_score LJB23_SIFT_score_converted LJB23_SIFT_pred LJB23_Polyphen2_HDIV_score LJB23_Polyphen2_HDIV_pred LJB23_Polyphen2_HVAR_score LJB23_Polyphen2_HVAR_pred LJB23_LRT_score LJB23_LRT_score_converted LJB23_LRT_pred LJB23_MutationTaster_score LJB23_MutationTaster_score_converted LJB23_MutationTaster_pred LJB23_MutationAssessor_score LJB23_MutationAssessor_score_converted LJB23_MutationAssessor_pred LJB23_FATHMM_score LJB23_FATHMM_score_converted LJB23_FATHMM_pred LJB23_RadialSVM_score LJB23_RadialSVM_score_converted LJB23_RadialSVM_pred LJB23_LR_score LJB23_LR_pred LJB23_GERP++ LJB23_PhyloP LJB23_SiPhy/ ];
+
         $href->{refGene} = ["Func.refGene","Gene.refGene","ExonicFunc.refGene","AAChange.refGene"]; 
-	    $href->{ljb_all} = [ qw/LJB_PhyloP LJB_PhyloP_Pred LJB_SIFT LJB_SIFT_Pred LJB_PolyPhen2 LJB_PolyPhen2_Pred LJB_LRT LJB_LRT_Pred LJB_MutationTaster LJB_MutationTaster_Pred LJB_GERP++/ ];
-	    $href->{ljb2_all} = [ qw/LJB2_SIFT LJB2_PolyPhen2_HDIV LJB2_PP2_HDIV_Pred LJB2_PolyPhen2_HVAR LJB2_PolyPhen2_HVAR_Pred LJB2_LRT LJB2_LRT_Pred LJB2_MutationTaster LJB2_MutationTaster_Pred LJB_MutationAssessor LJB_MutationAssessor_Pred LJB2_FATHMM LJB2_GERP++ LJB2_PhyloP LJB2_SiPhy/ ];
-	$href->{ljb23_all} = [ qw/LJB23_SIFT_score LJB23_SIFT_score_converted LJB23_SIFT_pred LJB23_Polyphen2_HDIV_score LJB23_Polyphen2_HDIV_pred LJB23_Polyphen2_HVAR_score LJB23_Polyphen2_HVAR_pred LJB23_LRT_score LJB23_LRT_score_converted LJB23_LRT_pred LJB23_MutationTaster_score LJB23_MutationTaster_score_converted LJB23_MutationTaster_pred LJB23_MutationAssessor_score LJB23_MutationAssessor_score_converted LJB23_MutationAssessor_pred LJB23_FATHMM_score LJB23_FATHMM_score_converted LJB23_FATHMM_pred LJB23_RadialSVM_score LJB23_RadialSVM_score_converted LJB23_RadialSVM_pred LJB23_LR_score LJB23_LR_pred LJB23_GERP++ LJB23_PhyloP LJB23_SiPhy/ ];
+        $href->{ljb_all} = [ qw/LJB_PhyloP LJB_PhyloP_Pred LJB_SIFT LJB_SIFT_Pred LJB_PolyPhen2 LJB_PolyPhen2_Pred LJB_LRT LJB_LRT_Pred LJB_MutationTaster LJB_MutationTaster_Pred LJB_GERP++/ ];
+        $href->{ljb2_all} = [ qw/LJB2_SIFT LJB2_PolyPhen2_HDIV LJB2_PP2_HDIV_Pred LJB2_PolyPhen2_HVAR LJB2_PolyPhen2_HVAR_Pred LJB2_LRT LJB2_LRT_Pred LJB2_MutationTaster LJB2_MutationTaster_Pred LJB_MutationAssessor LJB_MutationAssessor_Pred LJB2_FATHMM LJB2_GERP++ LJB2_PhyloP LJB2_SiPhy/ ];
+        $href->{ljb23_all} = [ qw/LJB23_SIFT_score LJB23_SIFT_score_converted LJB23_SIFT_pred LJB23_Polyphen2_HDIV_score LJB23_Polyphen2_HDIV_pred LJB23_Polyphen2_HVAR_score LJB23_Polyphen2_HVAR_pred LJB23_LRT_score LJB23_LRT_score_converted LJB23_LRT_pred LJB23_MutationTaster_score LJB23_MutationTaster_score_converted LJB23_MutationTaster_pred LJB23_MutationAssessor_score LJB23_MutationAssessor_score_converted LJB23_MutationAssessor_pred LJB23_FATHMM_score LJB23_FATHMM_score_converted LJB23_FATHMM_pred LJB23_RadialSVM_score LJB23_RadialSVM_score_converted LJB23_RadialSVM_pred LJB23_LR_score LJB23_LR_pred LJB23_GERP++ LJB23_PhyloP LJB23_SiPhy/ ];
+        $href->{popfreq_all} = [ qw/PopFreqMax 1000G2012APR_ALL 1000G2012APR_AFR 1000G2012APR_AMR 1000G2012APR_ASN 1000G2012APR_EUR ESP6500si_ALL ESP6500si_AA ESP6500si_EA CG46/ ];
         return $href;
     }
 );
-
 =head2 Wrapper Options
 
 =cut
@@ -562,7 +573,10 @@ sub write_annovar{
         print "## Processing file $file\n\n";
         
         $self->file($file);
-        $self->fname(basename($self->file));
+        my $tname = basename($self->file);
+        $tname =~ s/vcf$|vcf\.gz$//;
+        $self->fname($tname);
+#        $self->fname(basename($self->file));
         $self->get_samples;
         $self->convert_annovar;
 
@@ -573,7 +587,9 @@ sub write_annovar{
 #    #Annotate annovar input
     foreach my $file (@{$self->vcfs}){
         $self->file($file);
-        $self->fname(basename($self->file));
+        my $tname = basename($self->file);
+        $tname =~ s/vcf$|vcf\.gz$//;
+        $self->fname($tname);
         $self->table_annovar;
     }
 
@@ -586,7 +602,10 @@ sub write_annovar{
     return unless $self->annotate_vcf;
     foreach my $file (@{$self->vcfs}){
         $self->file($file);
-        $self->fname(basename($self->file));
+        my $tname = basename($self->file);
+        $tname =~ s/vcf$|vcf\.gz$//;
+        $self->fname($tname);
+#        $self->fname(basename($self->file));
         #Make this a parameter of the script
         $self->vcf_annotate;
     }
@@ -798,16 +817,44 @@ There is one vcf-annotated file per sample, so merge those at the the end to get
 sub merge_vcfs {
     my($self) = @_;
 
+    return if scalar @{$self->samples->{$self->file}} == 1;
+
     print "##Merge single sample VCF files\n\n";
 
     print "vcf-merge \\\n";
     foreach my $sample (@{$self->samples->{$self->file}}){
         print $self->outdir."/vcf-annotate_final/".$self->fname.".$sample.annovar.vcf.gz \\\n";
     }
-    print " | bgzip -f -c > ".$self->outdir."/vcf-annotate_final/".$self->fname.".allsamples.annovar.vcf.gz \\\n";
-    print "&& tabix -p vcf ".$self->outdir."/vcf-annotate_final/".$self->fname.".allsamples.annovar.vcf.gz\n";
+    print " | bgzip -f -c > ".$self->outdir."/vcf-annotate_interim/".$self->fname.".allsamples.annovar.vcf.gz \\\n";
+    print "&& tabix -p vcf ".$self->outdir."/vcf-annotate_interim/".$self->fname.".allsamples.annovar.vcf.gz\n";
+
+    print "\nwait\n\n";
 
 }
+
+=head2 subset_vcfs
+
+vcf-merge used in this fashion will create a lot of redundant columns, because it wants to assume all sample names are unique
+
+Straight from the vcftools documentation
+
+vcf-subset -c NA0001,NA0002 file.vcf.gz | bgzip -c > out.vcf.gz
+
+=cut
+
+sub subset_vcfs {
+    my($self) = @_;
+
+    print "##Subsetting the files to get rid of redundant info\n\n";
+
+    my $str = join(",", @{$self->samples->{$self->file}});
+
+    print "vcf-subset -c $str ".$self->outdir."/vcf-annotate_interim/".$self->fname.".allsamples.annovar.vcf.gz | bgzip -f -c > ".$self->outdir."/vcf-annotate_final/".$self->fname.".allsamples.nonredundant.annovar.vcf.gz \\\n";
+    print "&& tabix -p vcf ".$self->outdir."/vcf-annotate_final/".$self->fname.".allsamples.annovar.vcf.gz\n";
+
+    print "## Finished processing file ".$self->file."\n\n";
+}
+
 
 
 =head1 AUTHOR

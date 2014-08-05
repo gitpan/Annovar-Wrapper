@@ -37,6 +37,6 @@ resources:
   bugtracker: https://github.com/jerowe/Annovar-Wrapper/issues
   homepage: https://github.com/jerowe/Annovar-Wrapper
   repository: https://github.com/jerowe/Annovar-Wrapper.git
-version: '0.05'
+version: '0.06'
 x_contributors:
   - 'Jillian Rowe <jir2004@qatar-med.cornell.edu>'

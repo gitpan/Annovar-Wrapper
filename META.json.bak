@@ -4,9 +4,15 @@
       "Jillian Rowe, C<< <jillian.e.rowe at gmail.com> >>"
    ],
    "dynamic_config" : 0,
+<<<<<<< HEAD
    "generated_by" : "Dist::Milla version v1.0.5, Dist::Zilla version 5.019, CPAN::Meta::Converter version 2.141520",
    "license" : [
       "perl_5"
+=======
+   "generated_by" : "Minilla/v2.1.1, CPAN::Meta::Converter version 2.141520",
+   "license" : [
+      "artistic_1"
+>>>>>>> develop
    ],
    "meta-spec" : {
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
@@ -20,7 +26,13 @@
          "inc",
          "share",
          "eg",
+<<<<<<< HEAD
          "examples"
+=======
+         "examples",
+         "author",
+         "builder"
+>>>>>>> develop
       ]
    },
    "prereqs" : {
@@ -31,12 +43,24 @@
       },
       "configure" : {
          "requires" : {
+<<<<<<< HEAD
             "Module::Build::Tiny" : "0.036"
+=======
+            "Module::Build" : "0.38"
+>>>>>>> develop
          }
       },
       "develop" : {
          "requires" : {
+<<<<<<< HEAD
             "Test::Pod" : "1.41"
+=======
+            "Test::CPAN::Meta" : "0",
+            "Test::MinimumVersion::Fast" : "0.04",
+            "Test::PAUSE::Permissions" : "0.04",
+            "Test::Pod" : "1.41",
+            "Test::Spellunker" : "v0.2.7"
+>>>>>>> develop
          }
       },
       "runtime" : {
@@ -55,7 +79,11 @@
          }
       }
    },
+<<<<<<< HEAD
    "release_status" : "stable",
+=======
+   "release_status" : "unstable",
+>>>>>>> develop
    "resources" : {
       "bugtracker" : {
          "web" : "https://github.com/jerowe/Annovar-Wrapper/issues"
@@ -63,13 +91,25 @@
       "homepage" : "https://github.com/jerowe/Annovar-Wrapper",
       "repository" : {
          "type" : "git",
+<<<<<<< HEAD
          "url" : "https://github.com/jerowe/Annovar-Wrapper.git",
          "web" : "https://github.com/jerowe/Annovar-Wrapper"
       }
    },
-   "version" : "0.06",
+   "version" : "0.05",
+   "x_contributors" : [
+      "Kai Wang <kai@openbioinformatics.org>"
+   ]
+}
+
+=======
+         "url" : "git://github.com/jerowe/Annovar-Wrapper.git",
+         "web" : "https://github.com/jerowe/Annovar-Wrapper"
+      }
+   },
+   "version" : "0.01",
    "x_contributors" : [
       "Jillian Rowe <jir2004@qatar-med.cornell.edu>"
    ]
 }
-
+>>>>>>> develop

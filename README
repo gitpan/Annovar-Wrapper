@@ -2,7 +2,7 @@ NAME
     Annovar::Wrapper - A wrapper around the annovar annotation pipeline
 
 VERSION
-    Version 0.05
+    Version 0.06
 
 SYNOPSIS
         annovar-wrapper.pl --vcfs file1.vcf,file2.vcf --annovardb_path /path/to/annovar/dbs
@@ -277,6 +277,14 @@ SUBROUTINES/METHODS
   merge_vcfs
     There is one vcf-annotated file per sample, so merge those at the the
     end to get a multisample file using vcf-merge
+
+  subset_vcfs
+    vcf-merge used in this fashion will create a lot of redundant columns,
+    because it wants to assume all sample names are unique
+
+    Straight from the vcftools documentation
+
+    vcf-subset -c NA0001,NA0002 file.vcf.gz | bgzip -c > out.vcf.gz
 
 AUTHOR
     Jillian Rowe, "<jillian.e.rowe at gmail.com>"
