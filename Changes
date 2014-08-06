@@ -1,5 +1,8 @@
 Revision history for Annovar-Wrapper
 
+0.07  2014-08-06 09:40:17 AST
+    - Trying to get executable scripts to install
+    
 0.06  2014-08-05 15:51:35 AST
    - Made some changes to the annotation dbs and headers
 
