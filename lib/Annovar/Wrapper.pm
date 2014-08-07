@@ -25,7 +25,7 @@ Version 0.06
 
 =cut
 
-our $VERSION = '0.07';
+our $VERSION = '0.09';
 
 
 =head1 SYNOPSIS
@@ -326,9 +326,9 @@ has 'annovar_cols' => (
 #	$href->{ljb23_all} = [ qw/LJB23_SIFT_score LJB23_SIFT_score_converted LJB23_SIFT_pred LJB23_Polyphen2_HDIV_score LJB23_Polyphen2_HDIV_pred LJB23_Polyphen2_HVAR_score LJB23_Polyphen2_HVAR_pred LJB23_LRT_score LJB23_LRT_score_converted LJB23_LRT_pred LJB23_MutationTaster_score LJB23_MutationTaster_score_converted LJB23_MutationTaster_pred LJB23_MutationAssessor_score LJB23_MutationAssessor_score_converted LJB23_MutationAssessor_pred LJB23_FATHMM_score LJB23_FATHMM_score_converted LJB23_FATHMM_pred LJB23_RadialSVM_score LJB23_RadialSVM_score_converted LJB23_RadialSVM_pred LJB23_LR_score LJB23_LR_pred LJB23_GERP++ LJB23_PhyloP LJB23_SiPhy/ ];
 
         $href->{refGene} = ["Func.refGene","Gene.refGene","ExonicFunc.refGene","AAChange.refGene"]; 
-        $href->{ljb_all} = [ qw/LJB_PhyloP LJB_PhyloP_Pred LJB_SIFT LJB_SIFT_Pred LJB_PolyPhen2 LJB_PolyPhen2_Pred LJB_LRT LJB_LRT_Pred LJB_MutationTaster LJB_MutationTaster_Pred LJB_GERP++/ ];
-        $href->{ljb2_all} = [ qw/LJB2_SIFT LJB2_PolyPhen2_HDIV LJB2_PP2_HDIV_Pred LJB2_PolyPhen2_HVAR LJB2_PolyPhen2_HVAR_Pred LJB2_LRT LJB2_LRT_Pred LJB2_MutationTaster LJB2_MutationTaster_Pred LJB_MutationAssessor LJB_MutationAssessor_Pred LJB2_FATHMM LJB2_GERP++ LJB2_PhyloP LJB2_SiPhy/ ];
-        $href->{ljb23_all} = [ qw/LJB23_SIFT_score LJB23_SIFT_score_converted LJB23_SIFT_pred LJB23_Polyphen2_HDIV_score LJB23_Polyphen2_HDIV_pred LJB23_Polyphen2_HVAR_score LJB23_Polyphen2_HVAR_pred LJB23_LRT_score LJB23_LRT_score_converted LJB23_LRT_pred LJB23_MutationTaster_score LJB23_MutationTaster_score_converted LJB23_MutationTaster_pred LJB23_MutationAssessor_score LJB23_MutationAssessor_score_converted LJB23_MutationAssessor_pred LJB23_FATHMM_score LJB23_FATHMM_score_converted LJB23_FATHMM_pred LJB23_RadialSVM_score LJB23_RadialSVM_score_converted LJB23_RadialSVM_pred LJB23_LR_score LJB23_LR_pred LJB23_GERP++ LJB23_PhyloP LJB23_SiPhy/ ];
+        $href->{ljb_all} = [ qw/LJB_PhyloP LJB_PhyloP_Pred LJB_SIFT LJB_SIFT_Pred LJB_PolyPhen2 LJB_PolyPhen2_Pred LJB_LRT LJB_LRT_Pred LJB_MutationTaster LJB_MutationTaster_Pred LJB_GERPPP/ ];
+        $href->{ljb2_all} = [ qw/LJB2_SIFT LJB2_PolyPhen2_HDIV LJB2_PP2_HDIV_Pred LJB2_PolyPhen2_HVAR LJB2_PolyPhen2_HVAR_Pred LJB2_LRT LJB2_LRT_Pred LJB2_MutationTaster LJB2_MutationTaster_Pred LJB_MutationAssessor LJB_MutationAssessor_Pred LJB2_FATHMM LJB2_GERPPP LJB2_PhyloP LJB2_SiPhy/ ];
+        $href->{ljb23_all} = [ qw/LJB23_SIFT_score LJB23_SIFT_score_converted LJB23_SIFT_pred LJB23_Polyphen2_HDIV_score LJB23_Polyphen2_HDIV_pred LJB23_Polyphen2_HVAR_score LJB23_Polyphen2_HVAR_pred LJB23_LRT_score LJB23_LRT_score_converted LJB23_LRT_pred LJB23_MutationTaster_score LJB23_MutationTaster_score_converted LJB23_MutationTaster_pred LJB23_MutationAssessor_score LJB23_MutationAssessor_score_converted LJB23_MutationAssessor_pred LJB23_FATHMM_score LJB23_FATHMM_score_converted LJB23_FATHMM_pred LJB23_RadialSVM_score LJB23_RadialSVM_score_converted LJB23_RadialSVM_pred LJB23_LR_score LJB23_LR_pred LJB23_GERPPP LJB23_PhyloP LJB23_SiPhy/ ];
         $href->{popfreq_all} = [ qw/PopFreqMax 1000G2012APR_ALL 1000G2012APR_AFR 1000G2012APR_AMR 1000G2012APR_ASN 1000G2012APR_EUR ESP6500si_ALL ESP6500si_AA ESP6500si_EA CG46/ ];
         return $href;
     }
@@ -574,7 +574,7 @@ sub write_annovar{
         
         $self->file($file);
         my $tname = basename($self->file);
-        $tname =~ s/vcf$|vcf\.gz$//;
+        $tname =~ s/\.vcf$|\.vcf\.gz$//;
         $self->fname($tname);
 #        $self->fname(basename($self->file));
         $self->get_samples;
@@ -588,7 +588,7 @@ sub write_annovar{
     foreach my $file (@{$self->vcfs}){
         $self->file($file);
         my $tname = basename($self->file);
-        $tname =~ s/vcf$|vcf\.gz$//;
+        $tname =~ s/\.vcf$|\.vcf\.gz$//;
         $self->fname($tname);
         $self->table_annovar;
     }
@@ -603,7 +603,7 @@ sub write_annovar{
     foreach my $file (@{$self->vcfs}){
         $self->file($file);
         my $tname = basename($self->file);
-        $tname =~ s/vcf$|vcf\.gz$//;
+        $tname =~ s/\.vcf$|\.vcf\.gz$//;
         $self->fname($tname);
 #        $self->fname(basename($self->file));
         #Make this a parameter of the script
@@ -733,6 +733,7 @@ sub gen_descr{
     foreach my $sample (@{$self->samples->{$self->file}}){
         print "cp ".$self->outdir."/annovar_final/".$self->fname.".annovar.$sample.hg19_multianno.txt \\\n";
         print $self->outdir."/vcf-annotate_interim/".$self->fname.".annovar.$sample.hg19_multianno.txt \\\n";
+        print "&& sed -i 's/;/,/;s/=/->/;s/GERP++/GERPPP/;s/+/P/'g ".$self->outdir."/vcf-annotate_interim/".$self->fname.".annovar.$sample.hg19_multianno.txt \\\n";
         print "&& sort -k1,1 -k2,2n ".$self->outdir."/vcf-annotate_interim/".$self->fname.".annovar.$sample.hg19_multianno.txt > ";
         print $self->outdir."/vcf-annotate_interim/".$self->fname.".sorted.annovar.$sample.hg19_multianno.txt \\\n";
         print "&& bgzip -f ".$self->outdir."/vcf-annotate_interim/".$self->fname.".sorted.annovar.$sample.hg19_multianno.txt \\\n";
@@ -755,6 +756,13 @@ sub gen_descr{
         foreach my $db (@{$self->annovar_dbs}){
             if(exists $self->annovar_cols->{$db}){
                 my $tmp = $self->annovar_cols->{$db};
+
+                #Test this!!!
+                $db =~ s/\+/P/g;
+                $tmp =~ s/\+/P/g;
+
+                $db =~ s/\W/_/g;
+                $tmp =~ s/\W/_/g;
 
                 foreach my $t (@$tmp){
                     print <<EOF;

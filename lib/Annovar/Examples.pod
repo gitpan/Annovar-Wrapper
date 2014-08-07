@@ -204,3 +204,8 @@ I had trouble running the ljb23 databases. I contacted Kai (developer of annovar
 All the commands above are usual unix commands. You can always add a #!/bin/bash and run the commands in serial. 
 
 Another option is to use the Runner::MCE or Runner::Threads, that will run your jobs in parallel with appropriate job flow.
+
+=head2 Some notes on reannotating the vcf file
+
+Getting the vcf-annotate script working with the annovar took some serious fiddling. I hope it is working, and it has been tested rather extensively with the default databases, but still very carefully check your files. There are a few changes that need to be make to the multianno file for downward analysis, but your original multianno file is still kept. Any fields containing an equal sign, such as "Score=3" are changed to ->, "Score->3" and ";" are changed to commas. This is done with a sed command. This is to ensure correct parsing if later down the line you are using vcf-tools and/or Vcf.pm to parse the files, the INFO field will not parse correctly without these changes. The other change is changing the annotation header *_GERP++ to *_GERPPP, if using any of the ljb databases. The vcf-validate function uses a regexp that cuts the line out at +, so that needs to be changed as well.
+
