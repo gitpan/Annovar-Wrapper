@@ -25,7 +25,7 @@ Version 0.06
 
 =cut
 
-our $VERSION = '0.10';
+our $VERSION = '0.11';
 
 
 =head1 SYNOPSIS
@@ -546,6 +546,8 @@ sub parse_commands{
         my @tmp = split(",", $self->annovar_fun->[0]);
         $self->annovar_fun(\@tmp);
     }
+
+    return unless $self->vcfs;
     if($#{$self->vcfs} == 0){
         my @tmp = split(",", $self->vcfs->[0]);
         $self->vcfs(\@tmp);
