@@ -7,12 +7,6 @@
 #
 #  DESCRIPTION:  Flatten each line so it is in tabular format instead of INFO,FORMAT,etc
 #
-#      OPTIONS:  ---
-# REQUIREMENTS:  ---
-#         BUGS:  ---
-#        NOTES:  ---
-#       AUTHOR:  YOUR NAME (), 
-#      COMPANY:  
 #      VERSION:  1.0
 #      CREATED:  08/11/2014 09:55:09 AM
 #     REVISION:  ---
@@ -26,9 +20,8 @@ use Vcf;
 use Data::Dumper;
 use IO::File;
 
-
 #Initialize VCF
-my $vcffile = "../bin/test/alldbs/vcf-annotate_final/QMD-27-15_morereads..QMD-27-15ATTGGCTC.annovar.vcf.gz";
+my $vcffile = $ARGV[0];
 
 my $vcf = Vcf->new(file=>$vcffile);
 $vcf->parse_header();
@@ -41,7 +34,13 @@ my(@columns, @infos, @format, @samples);
 @samples = @{$href->{samples}};
 
 #Initialize Text::Csv
-my $fh = IO::File->new(">QMD-27-15_morereads..QMD-27-15ATTGGCTC.annovar.table.tsv");
+my $fh;
+if($ARGV[1]){
+    $fh = IO::File->new(">".$ARGV[1]);
+}
+else{
+    $fh = IO::File->new(">".$vcffile.".table.tsv");
+}
 print $fh join("\t", @columns)."\n";
 
 my $z=0;

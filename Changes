@@ -1,5 +1,8 @@
 Revision history for Annovar-Wrapper
 
+0.13  2014-08-17 14:08:14 AST
+    - Added a vcf-to-table script that parses out info and format columns and appends them in a table
+
 0.12  2014-08-17 14:03:56 AST
 
     - Fixed bug to annovar_cols
