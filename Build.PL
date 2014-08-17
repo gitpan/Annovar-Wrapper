@@ -19,7 +19,7 @@ my %module_build_args = (
     "Jillian Rowe, C<< <jillian.e.rowe at gmail.com> >>"
   ],
   "dist_name" => "Annovar-Wrapper",
-  "dist_version" => "0.09",
+  "dist_version" => "0.10",
   "license" => "perl",
   "module_name" => "Annovar::Wrapper",
   "recommends" => {},
@@ -38,7 +38,9 @@ my %module_build_args = (
     "perl" => "5.006"
   },
   "script_files" => [
-    "script/annovar-wrapper.pl"
+    "script/annovar-wrapper.pl",
+    "script/vcf-stats.pl",
+    "script/vcf-to-table.pl"
   ],
   "test_requires" => {}
 );

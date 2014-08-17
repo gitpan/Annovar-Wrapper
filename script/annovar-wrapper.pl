@@ -2,8 +2,6 @@
 
 package Main;
 
-use lib "/home/guests/jir2004/perlmodule/Annovar-Wrapper/lib";
-
 use Moose;
 #use Carp::Always;
 

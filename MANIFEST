@@ -14,6 +14,8 @@ ignore.txt
 lib/Annovar/Examples.pod
 lib/Annovar/Wrapper.pm
 script/annovar-wrapper.pl
+script/vcf-stats.pl
+script/vcf-to-table.pl
 t/00-load.t
 t/manifest.t
 t/pod-coverage.t
