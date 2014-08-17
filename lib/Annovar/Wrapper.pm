@@ -25,7 +25,7 @@ Version 0.06
 
 =cut
 
-our $VERSION = '0.11';
+our $VERSION = '0.12';
 
 
 =head1 SYNOPSIS
@@ -761,12 +761,11 @@ sub gen_descr{
 
                 #Test this!!!
                 $db =~ s/\+/P/g;
-                $tmp =~ s/\+/P/g;
-
                 $db =~ s/\W/_/g;
-                $tmp =~ s/\W/_/g;
 
                 foreach my $t (@$tmp){
+                    $t =~ s/\+/P/g;
+                    $t =~ s/\W/_/g;
                     print <<EOF;
                 -d key=INFO,ID=$sample.annovar.$db.$t,Number=0,Type=String,Description='Annovar $sample $db $t' \\
 EOF

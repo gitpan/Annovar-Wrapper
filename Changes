@@ -1,5 +1,9 @@
 Revision history for Annovar-Wrapper
 
+0.12  2014-08-17 14:03:56 AST
+
+    - Fixed bug to annovar_cols
+
 0.11  2014-08-17 13:49:53 AST
 
     - Fixed indir options with no vcfs
