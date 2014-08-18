@@ -1,5 +1,8 @@
 Revision history for Annovar-Wrapper
 
+0.14  2014-08-18 11:47:09 AST
+    - Removed die at 500 in the vcf-to-table script
+
 0.13  2014-08-17 14:08:14 AST
     - Added a vcf-to-table script that parses out info and format columns and appends them in a table
 

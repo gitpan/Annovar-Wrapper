@@ -45,7 +45,7 @@ print $fh join("\t", @columns)."\n";
 
 my $z=0;
 while(my $line = $vcf->next_line()){
-    die if $z>=500;
+#    die if $z>=500;
 
 # Some of the info fields, mainly the refgene ones, don't parse correctly with the next_data_hash method...
 # my $x = $vcf->next_data_hash($line);
