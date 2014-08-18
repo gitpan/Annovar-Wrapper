@@ -25,7 +25,7 @@ Version 0.06
 
 =cut
 
-our $VERSION = '0.15';
+our $VERSION = '0.16';
 
 
 =head1 SYNOPSIS
@@ -861,7 +861,7 @@ sub subset_vcfs {
     my $str = join(",", @{$self->samples->{$self->file}});
 
     print "vcf-subset -c $str ".$self->outdir."/vcf-annotate_interim/".$self->fname.".allsamples.annovar.vcf.gz | bgzip -f -c > ".$self->outdir."/vcf-annotate_final/".$self->fname.".allsamples.nonredundant.annovar.vcf.gz \\\n";
-    print "&& tabix -p vcf ".$self->outdir."/vcf-annotate_final/".$self->fname.".allsamples.annovar.vcf.gz\n";
+    print "&& tabix -p vcf ".$self->outdir."/vcf-annotate_final/".$self->fname.".allsamples.nonredundant.annovar.vcf.gz\n";
 
     print "## Finished processing file ".$self->file."\n\n";
 }
