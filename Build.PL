@@ -19,7 +19,7 @@ my %module_build_args = (
     "Jillian Rowe, C<< <jillian.e.rowe at gmail.com> >>"
   ],
   "dist_name" => "Annovar-Wrapper",
-  "dist_version" => "0.14",
+  "dist_version" => "0.15",
   "license" => "perl",
   "module_name" => "Annovar::Wrapper",
   "recommends" => {},

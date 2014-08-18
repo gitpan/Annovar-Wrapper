@@ -25,7 +25,7 @@ Version 0.06
 
 =cut
 
-our $VERSION = '0.14';
+our $VERSION = '0.15';
 
 
 =head1 SYNOPSIS
@@ -838,6 +838,8 @@ sub merge_vcfs {
     print "&& tabix -p vcf ".$self->outdir."/vcf-annotate_interim/".$self->fname.".allsamples.annovar.vcf.gz\n";
 
     print "\nwait\n\n";
+
+    $self->subset_vcfs();
 
 }
 

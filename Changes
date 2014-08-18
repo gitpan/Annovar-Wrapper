@@ -1,5 +1,9 @@
 Revision history for Annovar-Wrapper
 
+0.15  2014-08-18 12:44:01 AST
+
+    - Run vcf-subset on multisample files
+
 0.14  2014-08-18 11:47:09 AST
     - Removed die at 500 in the vcf-to-table script
 
