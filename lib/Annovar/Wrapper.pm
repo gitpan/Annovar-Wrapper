@@ -25,7 +25,7 @@ Version 0.06
 
 =cut
 
-our $VERSION = '0.17';
+our $VERSION = '0.18';
 
 
 =head1 SYNOPSIS
@@ -658,8 +658,8 @@ sub get_samples{
 
 #    @samples = map { s/[^A-Za-z0-9\-\.]//g; $_ } @samples;
 #    @samples = map { s/^\.//g; $_ } @samples;
-#   Remove any non alphanumeric characters
-    @samples = map { s/[^\w]//g; $_ } @samples;
+#   Remove any non alphanumeric characters keeping dashes and underscores
+    @samples = map { s/[^a-zA-Z0-9-_]//g; $_ } @samples;
 
 #    #TODO Have this in a proper debug msg
 #    print "##After transform samples are :\n##".join("\n##", @samples)."\n";

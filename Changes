@@ -1,5 +1,9 @@
 Revision history for Annovar-Wrapper
 
+0.18  2014-08-19 12:02:36 AST
+
+    - One more fix to sample names for vcf-subset
+
 0.17  2014-08-19 11:49:22 AST
     - Made a change to vcf-subset for when sample names are changed
 
