@@ -25,7 +25,7 @@ Version 0.06
 
 =cut
 
-our $VERSION = '0.16';
+our $VERSION = '0.17';
 
 
 =head1 SYNOPSIS
@@ -423,6 +423,12 @@ has 'samples' => (
     default => sub { return {} },
 );
 
+has 'orig_samples' => (
+    is => 'rw',
+    isa => 'HashRef',
+    required => 0,
+    default => sub { return {} },
+);
 
 has 'file' => (
     traits  => ['String'],
@@ -629,22 +635,32 @@ sub get_samples{
 
     my(@samples, $vcf, $out, $fh);
 
-    if($self->match_file(qr/gz$/)){
-        $fh = new IO::Uncompress::Gunzip $self->file or warn "## File handle didn't work for gzipped file ".$self->file."\n\n";
-    }
-    else{
-        $fh = new IO::File $self->file, "r" or warn "## File handle didn't work for ".$self->file."\n\n";
-    }
+#This doesn't work in large vcf files, end up with funny blocks
+#    if($self->match_file(qr/gz$/)){
+#        $fh = new IO::Uncompress::Gunzip $self->file or warn "## File handle didn't work for gzipped file ".$self->file."\n\n";
+#    }
+#    else{
+#        $fh = new IO::File $self->file, "r" or warn "## File handle didn't work for ".$self->file."\n\n";
+#    }
 
-    next unless $fh;
+#    next unless $fh;
 
-    $vcf = Vcf->new(fh => $fh); 
+    $vcf = Vcf->new(file => $self->file); 
     $vcf->parse_header(); 
     (@samples) = $vcf->get_samples();
+
 #    #TODO Have this in a proper debug msg
 #    print "##Before transform samples are :\n##".join("\n##", @samples)."\n";
-    @samples = map { s/[^A-Za-z0-9\-\.]//g; $_ } @samples;
-    @samples = map { s/^\.//g; $_ } @samples;
+
+    #Keep the original samples names for subsetting the vcf
+
+    $self->orig_samples->{$self->file} = \@samples;
+
+#    @samples = map { s/[^A-Za-z0-9\-\.]//g; $_ } @samples;
+#    @samples = map { s/^\.//g; $_ } @samples;
+#   Remove any non alphanumeric characters
+    @samples = map { s/[^\w]//g; $_ } @samples;
+
 #    #TODO Have this in a proper debug msg
 #    print "##After transform samples are :\n##".join("\n##", @samples)."\n";
     $vcf->close();
@@ -858,7 +874,7 @@ sub subset_vcfs {
 
     print "##Subsetting the files to get rid of redundant info\n\n";
 
-    my $str = join(",", @{$self->samples->{$self->file}});
+    my $str = join(",", @{$self->orig_samples->{$self->file}});
 
     print "vcf-subset -c $str ".$self->outdir."/vcf-annotate_interim/".$self->fname.".allsamples.annovar.vcf.gz | bgzip -f -c > ".$self->outdir."/vcf-annotate_final/".$self->fname.".allsamples.nonredundant.annovar.vcf.gz \\\n";
     print "&& tabix -p vcf ".$self->outdir."/vcf-annotate_final/".$self->fname.".allsamples.nonredundant.annovar.vcf.gz\n";
