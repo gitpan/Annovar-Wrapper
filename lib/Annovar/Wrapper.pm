@@ -25,7 +25,7 @@ Version 0.06
 
 =cut
 
-our $VERSION = '0.19';
+our $VERSION = '0.20';
 
 
 =head1 SYNOPSIS
@@ -653,7 +653,6 @@ sub get_samples{
 #    print "##Before transform samples are :\n##".join("\n##", @samples)."\n";
 
     #Keep the original samples names for subsetting the vcf
-
     $self->orig_samples->{$self->file} = \@samples;
 
     #Must keep this the same as annovar!
@@ -668,6 +667,9 @@ sub get_samples{
     die print "There are no samples!\n" unless @samples;
 
     $self->samples->{$self->file} = \@samples;
+
+    print "##Original samples names are :\n##".join("\n##", @{$self->orig_samples->{$self->file}})."\n";
+    print "##Annovar samples names are :\n##".join("\n##", @{$self->samples->{$self->file}})."\n";
 }
 
 =head2 convert_annovar
