@@ -324,10 +324,10 @@ ACKNOWLEDGEMENTS
     commands come straight from the documentation.
 
     This module was originally developed at and for Weill Cornell Medical
-    College in Qatar within ITS Advanced Computing Team and input by Khalid
-    Fahkro. With approval from WCMC-Q, this information was generalized and
-    put on github, for which the authors would like to express their
-    gratitude.
+    College in Qatar within ITS Advanced Computing Team and LOTS of input
+    and scientist debugging by Khalid Fahkro. With approval from WCMC-Q,
+    this information was generalized and put on github, for which the
+    authors would like to express their gratitude.
 
 LICENSE AND COPYRIGHT
     Copyright 2014 Jillian Rowe.

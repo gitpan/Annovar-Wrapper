@@ -25,7 +25,7 @@ Version 0.06
 
 =cut
 
-our $VERSION = '0.20';
+our $VERSION = '0.21';
 
 
 =head1 SYNOPSIS
@@ -929,7 +929,7 @@ L<http://search.cpan.org/dist/Annovar-Wrapper/>
 
 This module is a wrapper around the well developed annovar pipeline. The commands come straight from the documentation.
 
-This module was originally developed at and for Weill Cornell Medical College in Qatar within ITS Advanced Computing Team and input by Khalid Fahkro. With approval from WCMC-Q, this information was generalized and put on github, for which the authors would like to express their gratitude.
+This module was originally developed at and for Weill Cornell Medical College in Qatar within ITS Advanced Computing Team and LOTS of input and scientist debugging by Khalid Fahkro. With approval from WCMC-Q, this information was generalized and put on github, for which the authors would like to express their gratitude.
 
 =head1 LICENSE AND COPYRIGHT
 
