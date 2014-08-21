@@ -25,7 +25,7 @@ Version 0.06
 
 =cut
 
-our $VERSION = '0.21';
+our $VERSION = '0.22';
 
 
 =head1 SYNOPSIS
@@ -653,7 +653,8 @@ sub get_samples{
 #    print "##Before transform samples are :\n##".join("\n##", @samples)."\n";
 
     #Keep the original samples names for subsetting the vcf
-    $self->orig_samples->{$self->file} = \@samples;
+    my(@tmp) = @samples;
+    $self->orig_samples->{$self->file} = \@tmp;
 
     #Must keep this the same as annovar!
     @samples = map { s/[^A-Za-z0-9\-\.]//g; $_ } @samples;

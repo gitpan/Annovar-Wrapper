@@ -1,5 +1,8 @@
 Revision history for Annovar-Wrapper
 
+0.22  2014-08-21 10:38:36 AST
+    - Hopefully last fix for vcf-subset
+
 0.21  2014-08-21 10:25:06 AST
 
     - Adding in some acknowledgements
