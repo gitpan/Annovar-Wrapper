@@ -25,7 +25,7 @@ Version 0.06
 
 =cut
 
-our $VERSION = '0.25';
+our $VERSION = '0.26';
 
 
 =head1 SYNOPSIS
@@ -222,6 +222,9 @@ http://www.openbioinformatics.org/annovar/annovar_download.html for hg19 that I 
 #ljb23_siphy
 #ljb2_pp2hvar
 #Leaving out cg46
+#
+## The following have been tested
+# snp138NonFlagged,snp138,popfreq_all,cg69,cosmic68wgs,clinvar_20140211,gwasCatalog,caddgt20,phastConsElements46way,gerp++elem,wgEncodeBroadHmmGm12878HMM,wgEncodeUwDnaseGm12878HotspotsRep2,ljb23_all,refGene
 
 has 'annovar_dbs' => (
     is => 'rw',
@@ -256,7 +259,7 @@ Functions must be given in the corresponding order of your annovar_dbs
 
     #Option is an ArrayRef, and can be given as either
 
-    --anovar_fun f,f,g
+    --annovar_fun f,f,g
 
     #or 
 
@@ -277,29 +280,12 @@ f
 f
 f
 f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
+r
 f
 r
 r
-r
-r
-g
-)]
+f
+g)]
     }
 );
 

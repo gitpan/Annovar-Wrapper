@@ -1,5 +1,8 @@
 Revision history for Annovar-Wrapper
 
+0.26  2014-12-21 15:23:55 AST
+    Change for default databases and functions
+
 0.25  2014-12-21 15:16:46 AST
     Another change for refGene
 
