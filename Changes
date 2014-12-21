@@ -1,5 +1,8 @@
 Revision history for Annovar-Wrapper
 
+0.23  2014-12-21 07:44:26 AST
+    Made a change to outdirectory structure
+
 0.22  2014-08-21 10:38:36 AST
     - Hopefully last fix for vcf-subset
 

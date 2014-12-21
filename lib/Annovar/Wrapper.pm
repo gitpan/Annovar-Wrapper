@@ -25,7 +25,7 @@ Version 0.06
 
 =cut
 
-our $VERSION = '0.22';
+our $VERSION = '0.23';
 
 
 =head1 SYNOPSIS
@@ -507,6 +507,7 @@ sub check_files{
 
     $t = $self->outdir;
     $t =~ s/\/$//g;
+    $t = $t."/annovar-wrapper/";
     $self->outdir($t);
 
     #make the outdir
