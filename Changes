@@ -1,5 +1,8 @@
 Revision history for Annovar-Wrapper
 
+0.24  2014-12-21 14:42:41 AST
+    Making changes to make this compatible with new convert2annovar from annovar dist
+
 0.23  2014-12-21 07:44:26 AST
     Made a change to outdirectory structure
 

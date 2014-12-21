@@ -25,7 +25,7 @@ Version 0.06
 
 =cut
 
-our $VERSION = '0.23';
+our $VERSION = '0.24';
 
 
 =head1 SYNOPSIS
@@ -507,7 +507,7 @@ sub check_files{
 
     $t = $self->outdir;
     $t =~ s/\/$//g;
-    $t = $t."/annovar-wrapper/";
+    $t = $t."/annovar-wrapper";
     $self->outdir($t);
 
     #make the outdir
@@ -658,8 +658,10 @@ sub get_samples{
     $self->orig_samples->{$self->file} = \@tmp;
 
     #Must keep this the same as annovar!
-    @samples = map { s/[^A-Za-z0-9\-\.]//g; $_ } @samples;
-    @samples = map { s/^\.//g; $_ } @samples;
+#    #I think annovar got rid of these in the most recent implementation
+#    2014-12-20 Downloaded new annovar
+#    @samples = map { s/[^A-Za-z0-9\-\.]//g; $_ } @samples;
+#    @samples = map { s/^\.//g; $_ } @samples;
 
 #    #TODO Have this in a proper debug msg
 #    print "##After transform samples are :\n##".join("\n##", @samples)."\n";
@@ -699,6 +701,7 @@ sub table_annovar{
         print "## Processing sample $sample\n";
         print $self->tableannovar_path." ".$self->outdir."/".$self->fname.".annovar.$sample.avinput \\\n ".$self->annovardb_path." --buildver ".$self->buildver." \\\n -protocol ".join(",", @{$self->annovar_dbs})." \\\n -operation ".join(",", @{$self->annovar_fun})." \\\n -nastring NA --outfile ".$self->outdir."/".$self->fname.".annovar.$sample \\\n";
         print "&& find ".$self->outdir."/ |grep ".$self->outdir."/".$self->fname.".annovar.$sample | grep -v \"multianno\" | xargs -i -t mv {} ".$self->outdir."/annovar_interim \\\n";
+        print "&& find ".$self->outdir."/ |grep ".$self->outdir."/".$self->fname.".annovar.$sample | grep \"avinput\$\" | xargs -i -t mv {} ".$self->outdir."/annovar_interim \\\n";
         print "&& find ".$self->outdir."/ |grep ".$self->outdir."/".$self->fname.".annovar.$sample | grep \"multianno\" | xargs -i -t mv {} ".$self->outdir."/annovar_final\n\n";
     }
 
