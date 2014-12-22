@@ -1,5 +1,9 @@
 Revision history for Annovar-Wrapper
 
+0.27  2014-12-22 08:41:40 AST
+    Made a change to the default annovar_fun. The gwas database was listed as a filter (f), but should have been a region (r).
+    Thanks to Kai Wang from Annovar for pointing this out.
+
 0.26  2014-12-21 15:23:55 AST
     Change for default databases and functions
 
